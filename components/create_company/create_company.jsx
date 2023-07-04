@@ -2,15 +2,39 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Textinput from "../ui/Textinput";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const CreateCompany = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const FormValidationSchema = yup
+        .object({
+            legal_name: yup.string().required("The legal name is required"),
+            trading_name: yup.string().required("The trading name is required"),
+            abn: yup.string(),
+            arbn: yup.string(),
+            acn: yup.string(),
+            license_numbers: yup.string().required("The License Number is required"),
+            shareholding_structure: yup.string(),
+            incorporation_number: yup.string(),
+        })
+        .required();
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+    } = useForm({
+        resolver: yupResolver(FormValidationSchema),
+        mode: "all",
+    });
     const [selectedCompany, setSelectedCompany] = useState("");
 
+    // set the selected company 
     const handleCompanySelection = (company) => {
         setSelectedCompany(company);
     };
+
+    // company list out here 
     const renderCompanyList = () => {
         const companyList = [
             { name: "Sole Trader", backgroundImage: "assets/images/all-img/widget-bg-1.png" },
@@ -39,7 +63,7 @@ const CreateCompany = () => {
         );
     };
 
-
+    // alll company input here 
     const renderCompanyInputs = () => {
         switch (selectedCompany) {
             case "Sole Trader":
@@ -57,11 +81,9 @@ const CreateCompany = () => {
                                 register={register}
                                 error={errors.legal_name}
                             />
-                            {/* <input className="block text-gray-700 text-sm font-bold p-3 border border-2 mb-2" type="text" placeholder="Legal Name" {...register("legalName", { required: true })} /> */}
-                            {/* {errors.legalName && <span>This field is required</span>} */}
                         </li>
                         <li>
-                        <Textinput
+                            <Textinput
                                 label="Trading Name"
                                 type="text"
                                 placeholder="Type your Trading Name"
@@ -71,7 +93,7 @@ const CreateCompany = () => {
                             />
                         </li>
                         <li>
-                        <Textinput
+                            <Textinput
                                 label="ABN"
                                 type="text"
                                 placeholder="Type your ABN"
@@ -81,37 +103,37 @@ const CreateCompany = () => {
                             />
                         </li>
                         <li>
-                        <Textinput
+                            <Textinput
                                 label="License number"
                                 type="text"
                                 placeholder="Other License number(s)"
-                                name="licenseNumbers"
+                                name="license_numbers"
                                 register={register}
-                                error={errors.licenseNumbers}
+                                error={errors.license_numbers}
                             />
                         </li>
                         {selectedCompany === "Trust" && (
                             <li>
                                 <Textinput
-                                label="ARBN"
-                                type="text"
-                                placeholder="Type your ARBN"
-                                name="arbn"
-                                register={register}
-                                error={errors.arbn}
-                            />
+                                    label="ARBN"
+                                    type="text"
+                                    placeholder="Type your ARBN"
+                                    name="arbn"
+                                    register={register}
+                                    error={errors.arbn}
+                                />
                             </li>
                         )}
                         {selectedCompany === "Incorporated Association" && (
                             <li>
                                 <Textinput
-                                label="Incorporation number"
-                                type="text"
-                                placeholder="Type your Incorporation number"
-                                name="incorporation_number"
-                                register={register}
-                                error={errors.incorporation_number}
-                            />
+                                    label="Incorporation number"
+                                    type="text"
+                                    placeholder="Type your Incorporation number"
+                                    name="incorporation_number"
+                                    register={register}
+                                    error={errors.incorporation_number}
+                                />
                             </li>
                         )}
                     </div>
@@ -121,7 +143,7 @@ const CreateCompany = () => {
                 return (
                     <div className="grid grid-cols-2 gap-4">
                         <li>
-                        <Textinput
+                            <Textinput
                                 label="Legal Name"
                                 type="text"
                                 placeholder="Type your Legal Name"
@@ -131,7 +153,7 @@ const CreateCompany = () => {
                             />
                         </li>
                         <li>
-                        <Textinput
+                            <Textinput
                                 label="Trading Name"
                                 type="text"
                                 placeholder="Type your Trading Name"
@@ -141,7 +163,7 @@ const CreateCompany = () => {
                             />
                         </li>
                         <li>
-                        <Textinput
+                            <Textinput
                                 label="ACN"
                                 type="text"
                                 placeholder="Type your ACN"
@@ -151,7 +173,7 @@ const CreateCompany = () => {
                             />
                         </li>
                         <li>
-                        <Textinput
+                            <Textinput
                                 label="ABN"
                                 type="text"
                                 placeholder="Type your ABN"
@@ -161,7 +183,7 @@ const CreateCompany = () => {
                             />
                         </li>
                         <li>
-                        <Textinput
+                            <Textinput
                                 label="License number"
                                 type="text"
                                 placeholder="Other License number(s)"
@@ -173,13 +195,13 @@ const CreateCompany = () => {
                         {selectedCompany === "Shareholding Company" && (
                             <li>
                                 <Textinput
-                                label="Shareholding Structure"
-                                type="text"
-                                placeholder="Shareholding structure(number)"
-                                name="shareholding_structure"
-                                register={register}
-                                error={errors.shareholding_structure}
-                            />
+                                    label="Shareholding Structure"
+                                    type="text"
+                                    placeholder="Shareholding structure(number)"
+                                    name="shareholding_structure"
+                                    register={register}
+                                    error={errors.shareholding_structure}
+                                />
                             </li>
                         )}
                     </div>
@@ -188,13 +210,25 @@ const CreateCompany = () => {
                 return null;
         }
     };
+
+    // submit the form 
     const onSubmit = (data) => {
-        const formData = {
-            selectedCompany,
-            formData: data
-        }
-        console.log('FormData:', formData)
+        FormValidationSchema.validate(data, { abortEarly: false })
+            .then((validatedData) => {
+                const formData = {
+                    selectedCompany,
+                    formData: validatedData
+                };
+                console.log('FormData:', formData);
+
+                // Rest of your code...
+
+            })
+            .catch((validationErrors) => {
+                console.log('Validation Errors:', validationErrors.errors);
+            });
     };
+
     return (
         <div>
             <div className="modal ">
