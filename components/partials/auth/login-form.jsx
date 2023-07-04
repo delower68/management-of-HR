@@ -113,6 +113,7 @@ const LoginForm = () => {
           value={checked}
           onChange={() => setChecked(!checked)}
           label="Keep me signed in"
+          className="m-2"
         />
         <Link
           href="/auth/forgot_password"

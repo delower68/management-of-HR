@@ -28,7 +28,7 @@ const StarterPage = () => {
       isVisible={openModal}
       onClose= {()=>{setOpenModal(false)}}
       >
-        <p className=' p-2 text-blue-700 text-semibold rounded text-md mb-5'>Create your new company</p>
+        <p className=' p-2 text-blue-700 text-semibold rounded text-md mb-5'>Create new company</p>
       <CreateCompany/>
       </Modal>
     </div>

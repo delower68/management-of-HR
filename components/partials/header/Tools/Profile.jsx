@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Dropdown from "@/components/ui/Dropdown";
 import Icon from "@/components/ui/Icon";
-import { Menu, Transition } from "@headlessui/react";
+import { Menu } from "@headlessui/react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { useAuth } from "@/hooks/useAuth";
@@ -10,18 +10,17 @@ import { toast } from "react-toastify";
 const ProfileLabel = () => {
   const router = useRouter()
   const { user } = useAuth()
-  // console.log(user?.name)
+  console.log(user?.name)
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    if(!user?.name){
-
-      router.push('/auth/login')
-    }
-    else {
-      router.push('/')
-    }
-  },[user])
+  //   if(!user?.name){
+  //     router.push('/auth/login')
+  //   }
+  //   else {
+  //     router.push('/')
+  //   }
+  // },[user])
   return (
     <div className="flex items-center">
       <div className="flex-1 ltr:mr-[10px] rtl:ml-[10px]">
