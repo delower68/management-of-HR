@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 const ProfileLabel = () => {
   const router = useRouter()
   const { user } = useAuth()
-  console.log(user?.name)
+  // console.log(user?.name)
 
   // useEffect(()=>{
 

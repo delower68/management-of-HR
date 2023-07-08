@@ -117,9 +117,6 @@ const RegForm = () => {
         value={checked}
         onChange={() => setChecked(!checked)}
       />
-      {/* <button className="btn btn-dark block w-full text-center">
-        Create an account
-      </button> */}
       <div className="text-center mt-6">
                       <button
                         className="btn btn-dark block w-full text-center"
