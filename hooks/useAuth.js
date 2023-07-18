@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 export const useAuth = () => {
   const [user, setUser] = useState({});
+  console.log(user);
 
   useEffect(() => {
     const value = localStorage.getItem("user");
@@ -11,7 +12,6 @@ export const useAuth = () => {
         setUser(parsedUser);
       } catch (error) {
         console.error("Error parsing user value:", error);
-        // Handle the error as per your application's requirements
       }
     }
   }, []);

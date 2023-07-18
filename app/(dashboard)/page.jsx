@@ -21,11 +21,11 @@ const StarterPage = () => {
 
 
   const { user } = useAuth()
-  const userID = user?.created_by
+  // const userID = user?.created_by
   // get all created companies
-  useEffect(() => {
-    fetchCompanies(userID);
-  }, [userID]);
+  // useEffect(() => {
+  //   fetchCompanies(userID);
+  // }, [userID]);
 
   const fetchCompanies = async () => {
     try {

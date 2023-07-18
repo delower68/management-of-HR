@@ -13,7 +13,7 @@ const CreateCompany = ({setOpenModal, onFormSubmit}) => {
 
 
     const {user} = useAuth()
-    const created_by = user.user_id;
+    // const created_by = user.user_id;
 
 
     const FormValidationSchema = yup
@@ -227,16 +227,16 @@ const CreateCompany = ({setOpenModal, onFormSubmit}) => {
           .then(async (validatedData) => {
             const formData = {
               company_type_ref,
-              created_by,
+            //   created_by,
               company_type,
               ...validatedData,
             };
             console.log(formData);
       
-            const response = await axios.post(
-              "https://hr-management-1wt7.onrender.com/api/v1/create_company",
-              formData
-            );
+            // const response = await axios.post(
+            //   "https://hr-management-1wt7.onrender.com/api/v1/create_company",
+            //   formData
+            // );
             // Rest of your code...
             console.log(response)
             setOpenModal(false)

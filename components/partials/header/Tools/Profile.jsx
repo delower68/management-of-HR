@@ -10,17 +10,17 @@ import { toast } from "react-toastify";
 const ProfileLabel = () => {
   const router = useRouter()
   const { user } = useAuth()
-  // console.log(user?.name)
+  console.log(user?.username)
 
-  // useEffect(()=>{
+  useEffect(()=>{
 
-  //   if(!user?.name){
-  //     router.push('/auth/login')
-  //   }
-  //   else {
-  //     router.push('/')
-  //   }
-  // },[user])
+    if(!user?.username){
+      router.push('/auth/login')
+    }
+    else {
+      router.push('/')
+    }
+  },[user])
   return (
     <div className="flex items-center">
       <div className="flex-1 ltr:mr-[10px] rtl:ml-[10px]">
@@ -33,10 +33,10 @@ const ProfileLabel = () => {
         </div>
       </div>
       <div className="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">
-        {user?.name && 
+        {user?.username && 
         
         <span className="overflow-hidden text-ellipsis whitespace-nowrap w-[85px] block">
-          {user?.name}    
+          {user?.username}    
         </span>
         }
         <span className="text-base inline-block ltr:ml-[10px] rtl:mr-[10px]">
