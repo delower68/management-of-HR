@@ -56,7 +56,7 @@ const RegForm = () => {
           "https://hr-management-1wt7.onrender.com/api/v1/register",
           formData
         );
-        console.log(response.data);
+        console.log(response.data.message);
         if (response.status >= 200 && response.status < 300 && typeof window !== "undefined") {
           router.push("/auth/login");
           toast.success("SignUp successfully");
@@ -69,7 +69,8 @@ const RegForm = () => {
         if (error.response) {
           const response = error.response;
           if (response.status === 406) {
-            toast.error("Email is already registered");
+            const errorMessage = response.data.message;
+            toast.error(errorMessage);
           } else if (response.status >= 400 && response.status <= 500) {
             const errorMessage = response.data.message;
             toast.error(errorMessage);

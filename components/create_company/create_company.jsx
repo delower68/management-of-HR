@@ -5,11 +5,16 @@ import Textinput from "../ui/Textinput";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
+import { useAuth } from "@/hooks/useAuth";
 
 const CreateCompany = ({setOpenModal, onFormSubmit}) => {
     const [company_type, setCompanyType] = useState("");
-    const [created_by, setCreatedBy] = useState("a74c1d90-3b62-49e3-93ff-7090145b98d2");
-    const [company_type_ref, setCompanyTypeRef] = useState("a74c1d90-3b62-49e3-93ff-7090145b98d2");
+    const [company_type_ref, setCompanyTypeRef] = useState("f1cb1d9c-23d5-4b6d-9dc5-aca288b81124");
+
+
+    const {user} = useAuth()
+    const created_by = user.user_id;
+
 
     const FormValidationSchema = yup
         .object({

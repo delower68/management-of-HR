@@ -239,7 +239,7 @@ const GroupChart2 = () => {
       {" "}
       {statistics.map((item, i) => (
         <div key={i}>
-          <Card bodyClass="pt-4 pb-3 px-4">
+          <Card bodyclassName="pt-4 pb-3 px-4">
             <div className="flex space-x-3 rtl:space-x-reverse">
               <div className="flex-none">
                 <div

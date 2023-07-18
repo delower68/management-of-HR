@@ -47,50 +47,48 @@ const LoginForm = () => {
     resolver: yupResolver(schema),
   });
 
+
   const handelSignIn = (data) => {
     setLoading(true);
     schema
       .validate(data, { abortEarly: false })
       .then(async (formData) => {
         const response = await axios.post(
-          "https://hr-management-1wt7.onrender.com/api/v1/login",
+          // "https://hr-management-1wt7.onrender.com/api/v1/login",
+          'https://webapi.lincolnau.nsw.edu.au/accounts/login',
           formData
-          
         );
-        const userInfo = response.data.user;
-        console.log(response.status);
-        if (response.status >= 200 && response.status < 300) {
+        const userInfo = response?.data?.data;
+        console.log(userInfo)
+        if (response?.data?.success === true) {
           router.push("/");
-          toast.success("login successfully");
+          toast.success("Login successful");
           localStorage.setItem("user", JSON.stringify(userInfo));
         }
         setLoading(false);
+        if (response) {
+          const errorMessage = response?.data?.err;
+          toast.error(errorMessage);
+        } else {
+          toast.error("An error occurred from server");
+        }
+        if (response.status === 500){
+          toast.error("An error occurred from server")
+        }
       })
+
       .catch((error) => {
         setLoading(false);
         if (error.response) {
-          const response = error.response;
-          if (response.status === 500) {
-            toast.error("Email not found");
-          } else if (response.status === 401) {
-            toast.error("Email is not verified");
-          } else if (response.status >= 400 && response.status <= 500) {
-            const errorMessage = response.data.message;
-            toast.error(errorMessage);
-          } else {
-            toast.error("Internal server error");
-          }
-        } else if (error.request) {
-          console.log(error.request);
-          toast.error("No response from server");
+          const errorMessage = error.response?.data?.err || "An error occurred";
+          toast.error(errorMessage);
         } else {
-          console.log("Error", error.message);
-          toast.error("An error occurred");
+          toast.error("An error occurred from server");
         }
-        console.log(error.config);
       });
   };
-
+  
+  
 
   return (
     <form onSubmit={handleSubmit(handelSignIn)} className="space-y-4 ">

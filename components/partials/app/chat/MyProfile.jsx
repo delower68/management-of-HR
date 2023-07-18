@@ -130,7 +130,7 @@ const MyProfile = () => {
                     value={item.value}
                     checked={status === item.value}
                     onChange={(e) => setStatus(e.target.value)}
-                    activeClass={item.activeClass}
+                    activeclassName={item.activeClass}
                   />
                 ))}
               </div>

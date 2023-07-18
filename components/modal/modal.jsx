@@ -4,7 +4,7 @@ import { AiOutlineCloseCircle } from 'react-icons/ai'
 const Modal = ({ isVisible, onClose, children }) => {
     if (!isVisible) return null;
     return (
-        <div className='fixed inset-0 bg-black-800 bg-opacity-50 backdrop-blur-sm flex justify-center items-center '
+        <div className='fixed inset-0 bg-black-800 mt-20 pt-20 bg-opacity-50 backdrop-blur-sm flex justify-center items-center overflow-y-scroll'
         >
             <div className='w-[600px] flex flex-col bg-white bg-opacity-75  shadow-lg rounded'>
                 <button
