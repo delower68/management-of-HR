@@ -18,9 +18,10 @@ const ProfileLabel = () => {
       router.push('/auth/login')
     }
     else {
-      router.push('/')
+      router.push('/dashboard')
     }
-  },[user])
+  },[user]);
+  
   return (
     <div className="flex items-center">
       <div className="flex-1 ltr:mr-[10px] rtl:ml-[10px]">

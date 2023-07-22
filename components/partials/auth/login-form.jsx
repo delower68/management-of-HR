@@ -61,7 +61,7 @@ const LoginForm = () => {
         const userInfo = response?.data?.data;
         console.log(userInfo)
         if (response?.data?.success === true) {
-          router.push("/");
+          router.push("/dashboard");
           toast.success("Login successful");
           localStorage.setItem("user", JSON.stringify(userInfo));
         }
@@ -96,23 +96,29 @@ const LoginForm = () => {
         name="email"
         label="email"
         type="email"
+        placeholder="email"
         register={register}
         error={errors?.email}
+        className="mb-[-12px]"
       />
       <Textinput
         name="password"
         label="passwrod"
         type="password"
+        placeholder="password"
         register={register}
         error={errors.password}
+        className="mb-[-12px]"
       />
       <div className="flex justify-between">
-        <Checkbox
-          value={checked}
-          onChange={() => setChecked(!checked)}
-          label="Keep me signed in"
-          className="m-2"
-        />
+        
+        <div className="flex items-center mb-4">
+    <input 
+     value={checked}
+     onChange={() => setChecked(!checked)}
+    id="default-checkbox" type="checkbox"  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+    <label for="default-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Keep me signed in</label>
+</div>
         <Link
           href="/auth/forgot_password"
           className="text-sm text-slate-800 dark:text-slate-400 leading-6 font-medium"

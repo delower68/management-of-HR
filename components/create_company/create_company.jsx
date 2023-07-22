@@ -47,28 +47,29 @@ const CreateCompany = ({setOpenModal, onFormSubmit}) => {
     // company list out here 
     const renderCompanyList = () => {
         const companyList = [
-            { name: "sole-trader", backgroundImage: "assets/images/all-img/widget-bg-1.png" },
-            { name: "partnership", backgroundImage: "assets/images/all-img/widget-bg-4.png" },
-            { name: "shareholding-company", backgroundImage: "assets/images/all-img/widget-bg-10.png" },
-            { name: "company-limited-by-guarantee", backgroundImage: "assets/images/all-img/widget-bg-9.png" },
-            { name: "trust", backgroundImage: "assets/images/all-img/widget-bg-3-1.png" },
-            { name: "incorporated-association", backgroundImage: "assets/images/all-img/widget-bg-7.png" }
+            { name: "sole-trader", backgroundColor: "#3498db" },
+        { name: "partnership", backgroundColor: "#e74c3c" },
+        { name: "shareholding-company", backgroundColor: "#2ecc71" },
+        { name: "company-limited-by-guarantee", backgroundColor: "#f1c40f" },
+        { name: "trust", backgroundColor: "#9b59b6" },
+        { name: "incorporated-association", backgroundColor: "#1abc9c" }
         ];
 
         return (
             <ul className="company-list pb-4 grid grid-cols-2 gap-4">
-                {companyList.map((company) => (
-                    <li
-                        key={company.name}
-                        className={`p-3 rounded-md ${company_type && company_type !== company.name ? "hidden" : ""}`}
-                        style={{
-                            backgroundImage: `url(${company.backgroundImage})`
-                        }}
-                        onClick={() => handleCompanySelection(company.name)}
-                    >
-                        {company.name}
-                    </li>
-                ))}
+                 {companyList.map((company) => (
+                <li
+                    key={company.name}
+                    className={`p-3 rounded-md ${company_type && company_type !== company.name ? "hidden" : ""}`}
+                    style={{
+                        backgroundColor: company.backgroundColor,
+                        color: "#fff", // You can set a default text color for all companies or customize this per company as needed.
+                    }}
+                    onClick={() => handleCompanySelection(company.name)}
+                >
+                    {company.name}
+                </li>
+            ))}
             </ul>
         );
     };

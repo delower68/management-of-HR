@@ -7,9 +7,9 @@ import { BiSolidEdit } from 'react-icons/bi';
 
 const CompanyDetails = ({ company, loading }) => {
   console.log({ company })
-  if (loading) {
-    return <p>Loading...</p>;
-  }
+  // if (loading) {
+  //   return <p>Loading...</p>;
+  // }
   return (
     <>
       {/* <div className="profiel-wrap px-[35px] mt-10 pb-10 md:pt-[84px] pt-10 rounded-lg bg-white dark:bg-slate-800 lg:flex lg:space-y-0 space-y-6 justify-between items-end relative z-[1]">
@@ -58,7 +58,7 @@ const CompanyDetails = ({ company, loading }) => {
           <p className='mb-3'>Other license number:</p>
           <p className='mb-3'>Created Date: </p>
         </div>
-        <div>
+        {/* <div>
           <p className='mb-3'>{company.company_type}</p>
           <p className='mb-3'>{company.legal_name}</p>
           <p className='mb-3'>{company.trading_name}</p>
@@ -67,7 +67,7 @@ const CompanyDetails = ({ company, loading }) => {
           <p className='mb-3'>null</p>
           }
           <p className="mb-3">{moment(company?.createdAt).format('DD-MM-YYYY')}</p>
-        </div>
+        </div> */}
       </div>
     </>
   )

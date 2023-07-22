@@ -111,7 +111,7 @@ const Textinput = ({
           />
         )}
         {/* icon */}
-        <div className="flex text-xl absolute ltr:right-[14px] rtl:left-[14px] top-1/2 -translate-y-1/2  space-x-1 rtl:space-x-reverse">
+        <div className="flex text-xl  justify-end ltr:right-[14px] rtl:left-[14px]   -translate-y-1/2  space-x-1 rtl:space-x-reverse">
           {hasicon && (
             <span
               className="cursor-pointer text-secondary-500"
@@ -141,7 +141,7 @@ const Textinput = ({
       {/* error and success message*/}
       {error && (
         <div
-          className={` mt-2 ${
+          className={` ${
             msgTooltip
               ? " inline-block bg-danger-500 text-white text-[10px] px-2 py-1 rounded"
               : " text-danger-500 block text-sm"
@@ -153,7 +153,7 @@ const Textinput = ({
       {/* validated and success message*/}
       {validate && (
         <div
-          className={` mt-2 ${
+          className={` ${
             msgTooltip
               ? " inline-block bg-success-500 text-white text-[10px] px-2 py-1 rounded"
               : " text-success-500 block text-sm"

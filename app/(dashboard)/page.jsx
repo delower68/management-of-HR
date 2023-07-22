@@ -69,12 +69,13 @@ const StarterPage = () => {
 
       <div>
         <div className="grid grid-cols-3 gap-7 pt-8 m-3">
-          {loading ? (
-            <div className="ml-20"><Loading /></div>
-          ) : (
-            createdCompany?.map((company, id) => (
+          {
+          // loading ? (
+          //   <div className="ml-20"><Loading /></div>
+          // ) : (
+            // createdCompany?.map((company, id) => (
               <>
-                <div
+                {/* <div
                   key={id}
                   className="bg-no-repeat bg-cover bg-center p-4 rounded-[6px] relative shadow-[0_0_9px_theme('colors.gray.700')] "
                   style={{
@@ -94,8 +95,49 @@ const StarterPage = () => {
 
                       <p
                         className="flex justify-center items-center  rounded-md"
-                        // onClick={() => setOpenSeconModal(true)}
+                        
                         onClick={() => handleCompanyDetails(company)}>
+                        <BsThreeDotsVertical />
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <Modal
+
+                    isVisible={openSeconModal}
+                    onClose={() => { setOpenSeconModal(false) }}
+                  >
+
+                    {selectedCompany && (
+                      <CompanyDetails
+                        loading={loading}
+                        company={selectedCompany}
+                      />
+                    )}
+
+                  </Modal>
+                </div> */}
+              </>
+            // ))
+          }
+          <div
+                  className="bg-no-repeat bg-cover bg-center p-4 rounded-[6px] relative shadow-[0_0_9px_theme('colors.gray.700')] "
+                >
+                  <div className="flex justify-between">
+
+                    <div className="max-w-[169px] ">
+                      <div className="text-xl font-medium text-slate-900 mb-2">
+                        Apex
+                      </div>
+                      <p className="text-sm text-slate-800">Sole Trder</p>
+                      <p className="text-sm text-slate-800">Date: </p>
+                    </div>
+                    <div className="float-right mt-0" >
+
+                      <p
+                        className="flex justify-center items-center  rounded-md"
+                        // onClick={() => setOpenSeconModal(true)}
+                        onClick={() => handleCompanyDetails()}>
                         <BsThreeDotsVertical />
                       </p>
                     </div>
@@ -116,12 +158,9 @@ const StarterPage = () => {
 
                   </Modal>
                 </div>
-              </>
-            ))
-          )}
         </div>
 
-        {/* create new company modal here */}
+       
         <Modal
           isVisible={openModal}
           onClose={() => { setOpenModal(false) }}
